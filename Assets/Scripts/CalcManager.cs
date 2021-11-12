@@ -7,20 +7,27 @@ public class CalcManager : MonoBehaviour
 {
     private static CalcManager _instance;
 
-    public static CalcManager Instance {
-        get {
-            return _instance;
-        }
-        set {
-            if(_instance == null)
+
+    public static CalcManager Instance
+    {
+        get { return _instance; }
+        set
+        {
+            if (_instance == null)
                 _instance = value;
             else
                 Destroy(value);
         }
     }
 
-    public TextMeshProUGUI expression; 
-    public TextMeshProUGUI result; 
+    public TextMeshProUGUI expression;
+    public TextMeshProUGUI result;
+
+    public string ResultText
+    {
+        get { return result.text; }
+        set { result.text = TransNumberFormat(value); }
+    }
 
 
     /// <summary>
@@ -31,10 +38,21 @@ public class CalcManager : MonoBehaviour
         Instance = this;
     }
 
-
-    // Update is called once per frame
-    void Update()
+    public static string TransNumberFormat(string text)
     {
-        
+        string result = "";
+        if (text == "")
+            result = "0";
+        else
+        {
+            if (int.TryParse(text, out int intResult))
+                result = intResult + "";
+            else if (float.TryParse(text, out float floatResult))
+                result = floatResult + "";
+            else if (double.TryParse(text, out double doubleResult))
+                result = doubleResult + "";
+        }
+
+        return result;
     }
 }
