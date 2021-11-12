@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,11 +33,11 @@ public class ButtonClick : MonoBehaviour
 
     public void NumberClick(string text)
     {
-        if (int.TryParse(text, out int result))
+        if (long.TryParse(text, out long result))
         {
             string prevResult = CalcManager.Instance.ResultText;
             prevResult += (result+"");
-            CalcManager.Instance.ResultText = prevResult;
+            CalcManager.Instance.ResultText = String.Format("{0:#,0}", prevResult);
         }
     }
 
@@ -44,7 +45,26 @@ public class ButtonClick : MonoBehaviour
     {
         if(char.TryParse(text, out char symbol))
         {
+            string tmpText = CalcManager.Instance.ResultText;
+
+            // 큐에 숫자, 연산자 가 들어가고
+            if(long.TryParse(tmpText, out long longText))
+                CalcManager.Instance.numberQueue.Enqueue(longText);
             
+            CalcManager.Instance.symbolQueue.Enqueue(symbol);
+
+
+            // CalcManager.Instance.ExpressionText = 
         }
+    }
+
+    public void CalcQueue(Queue<long> numberQueue, Queue<char> symbolQueue)
+    {
+        long leftValue = numberQueue.Dequeue();
+        long rightValue = numberQueue.Dequeue();
+
+        char symbol = symbolQueue.Dequeue();
+
+
     }
 }
