@@ -1,30 +1,169 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class Calculator<T, U>
+public enum OPERATOR
 {
-    T leftValue;
-    U rightValue;
+    NONE,
+    LONGLONG,
+    LONGDOUBLE,
+    DOUBLELONG,
+    DOUBLEDOUBLE
+}
 
-    public void Plus(Action<T, U> calc)
+public class Calculator
+{
+    public string leftValue, rightValue;
+
+    long longLeftValue, longRightValue;
+    double doubleLeftValue, doubleRightValue;
+
+    public OPERATOR CheckOperator(string leftValue, string rightValue)
     {
-        calc(leftValue, rightValue);
+        if (long.TryParse(leftValue, out longLeftValue) && long.TryParse(rightValue, out longRightValue))
+            return OPERATOR.LONGLONG;
+        else if (long.TryParse(leftValue, out longLeftValue) && double.TryParse(rightValue, out doubleRightValue))
+            return OPERATOR.LONGDOUBLE;
+        else if (double.TryParse(leftValue, out doubleLeftValue) && long.TryParse(rightValue, out longRightValue))
+            return OPERATOR.DOUBLELONG;
+        else if (double.TryParse(leftValue, out doubleLeftValue) && double.TryParse(rightValue, out doubleRightValue))
+            return OPERATOR.DOUBLEDOUBLE;
+        else
+            return OPERATOR.NONE;
     }
 
-    public void Subtract(Action<T, U> calc)
+    public object Plus()
     {
-        calc(leftValue, rightValue);
+        if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGLONG)
+        {
+            LongLongCalculator tempCalc = new LongLongCalculator() { leftValue = longLeftValue, rightValue = longRightValue };
+            tempCalc.Plus();
+
+            return tempCalc.result;
+        }
+        else if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGDOUBLE)
+        {
+            LongDoubleCalculator tempCalc = new LongDoubleCalculator() { leftValue = longLeftValue, rightValue = doubleRightValue };
+            tempCalc.Plus();
+
+            return tempCalc.result;
+        }
+        else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLELONG)
+        {
+            DoubleLongCalculator tempCalc = new DoubleLongCalculator() { leftValue = doubleLeftValue, rightValue = longRightValue };
+            tempCalc.Plus();
+
+            return tempCalc.result;
+        }
+        else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLEDOUBLE)
+        {
+            DoubleDoubleCalculator tempCalc = new DoubleDoubleCalculator() { leftValue = doubleLeftValue, rightValue = doubleRightValue };
+            tempCalc.Plus();
+
+            return tempCalc.result;
+        }
+        else
+            return (object)0;
     }
 
-    public void Multiply(Action<T, U> calc)
+    public object Subtract()
     {
-        calc(leftValue, rightValue);
+        if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGLONG)
+        {
+            LongLongCalculator tempCalc = new LongLongCalculator() { leftValue = longLeftValue, rightValue = longRightValue };
+            tempCalc.Subtract();
+
+            return tempCalc.result;
+        }
+        else if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGDOUBLE)
+        {
+            LongDoubleCalculator tempCalc = new LongDoubleCalculator() { leftValue = longLeftValue, rightValue = doubleRightValue };
+            tempCalc.Subtract();
+
+            return tempCalc.result;
+        }
+        else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLELONG)
+        {
+            DoubleLongCalculator tempCalc = new DoubleLongCalculator() { leftValue = doubleLeftValue, rightValue = longRightValue };
+            tempCalc.Subtract();
+
+            return tempCalc.result;
+        }
+        else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLEDOUBLE)
+        {
+            DoubleDoubleCalculator tempCalc = new DoubleDoubleCalculator() { leftValue = doubleLeftValue, rightValue = doubleRightValue };
+            tempCalc.Subtract();
+
+            return tempCalc.result;
+        }
+        else
+            return (object)0;
     }
 
-    public void Division(Action<T, U> calc)
+    public object Multiply()
     {
-        calc(leftValue, rightValue);
+        if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGLONG)
+        {
+            LongLongCalculator tempCalc = new LongLongCalculator() { leftValue = longLeftValue, rightValue = longRightValue };
+            tempCalc.Multiply();
+
+            return tempCalc.result;
+        }
+        else if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGDOUBLE)
+        {
+            LongDoubleCalculator tempCalc = new LongDoubleCalculator() { leftValue = longLeftValue, rightValue = doubleRightValue };
+            tempCalc.Multiply();
+
+            return tempCalc.result;
+        }
+        else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLELONG)
+        {
+            DoubleLongCalculator tempCalc = new DoubleLongCalculator() { leftValue = doubleLeftValue, rightValue = longRightValue };
+            tempCalc.Multiply();
+
+            return tempCalc.result;
+        }
+        else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLEDOUBLE)
+        {
+            DoubleDoubleCalculator tempCalc = new DoubleDoubleCalculator() { leftValue = doubleLeftValue, rightValue = doubleRightValue };
+            tempCalc.Multiply();
+
+            return tempCalc.result;
+        }
+        else
+            return (object)0;
+    }
+
+    public object Division()
+    {
+        if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGLONG)
+        {
+            LongLongCalculator tempCalc = new LongLongCalculator() { leftValue = longLeftValue, rightValue = longRightValue };
+            tempCalc.Division();
+
+            return tempCalc.result;
+        }
+        else if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGDOUBLE)
+        {
+            LongDoubleCalculator tempCalc = new LongDoubleCalculator() { leftValue = longLeftValue, rightValue = doubleRightValue };
+            tempCalc.Division();
+
+            return tempCalc.result;
+        }
+        else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLELONG)
+        {
+            DoubleLongCalculator tempCalc = new DoubleLongCalculator() { leftValue = doubleLeftValue, rightValue = longRightValue };
+            tempCalc.Division();
+
+            return tempCalc.result;
+        }
+        else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLEDOUBLE)
+        {
+            DoubleDoubleCalculator tempCalc = new DoubleDoubleCalculator() { leftValue = doubleLeftValue, rightValue = doubleRightValue };
+            tempCalc.Division();
+
+            return tempCalc.result;
+        }
+        else
+            return (object)0;
     }
 }

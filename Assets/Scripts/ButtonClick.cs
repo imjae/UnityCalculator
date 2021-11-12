@@ -53,7 +53,7 @@ public class ButtonClick : MonoBehaviour
             
             CalcManager.Instance.symbolQueue.Enqueue(symbol);
 
-
+            
             // CalcManager.Instance.ExpressionText = 
         }
     }
