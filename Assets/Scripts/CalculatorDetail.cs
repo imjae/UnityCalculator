@@ -20,23 +20,26 @@ public class LongLongCalculator : CalculatorTemplate<long, long>
 
     public void Subtract()
     {
-        SubtractTemplate((leftValue, rightValue) => {
-            this.result = leftValue - rightValue;
-        });
+        this.result = leftValue - rightValue;
+        // SubtractTemplate((leftValue, rightValue) => {
+        //     this.result = leftValue - rightValue;
+        // });
     }
     
     public void Multiply()
     {
-        MultiplyTemplate((leftValue, rightValue) => {
-            this.result = leftValue * rightValue;
-        });
+        this.result = leftValue * rightValue;
+        // MultiplyTemplate((leftValue, rightValue) => {
+        //     this.result = leftValue * rightValue;
+        // });
     }
     
     public void Division()
     {
-        DivisionTemplate((leftValue, rightValue) => {
-            this.result = leftValue / rightValue;
-        });
+        this.result = leftValue / rightValue;
+        // DivisionTemplate((leftValue, rightValue) => {
+        //     this.result = leftValue / rightValue;
+        // });
     }
 }
 
