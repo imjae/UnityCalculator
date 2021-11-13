@@ -11,9 +11,7 @@ public class LongLongCalculator : CalculatorTemplate<long, long>
     public void Plus()
     {
         this.result = leftValue + rightValue;
-        // Debug.Log($"{leftValue} {rightValue}");
         // PlusTemplate((leftValue, rightValue) => {
-        //     // Debug.Log($"LongLongCalculator ¿¡¼­ {leftValue} {rightValue} {leftValue + rightValue}");
         //     this.result = leftValue + rightValue;
         // });
     }

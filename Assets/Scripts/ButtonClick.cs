@@ -22,10 +22,12 @@ public class ButtonClick : MonoBehaviour
         #region Button : AddClickListener
         ClearButtonAddListener();
         ClearEditButtonAddListener();
-        numberButtonList.ForEach(button => {
+        numberButtonList.ForEach(button =>
+        {
             NumberButtonAddListener(button);
         });
-        symbolButtonList.ForEach(button => {
+        symbolButtonList.ForEach(button =>
+        {
             SymbolButtonAddListener(button);
         });
         #endregion
@@ -51,14 +53,14 @@ public class ButtonClick : MonoBehaviour
 
     void ClearButtonAddListener()
     {
-        clearButton.onClick.AddListener(() => 
+        clearButton.onClick.AddListener(() =>
         {
             ClearClick();
         });
     }
     void ClearEditButtonAddListener()
     {
-        clearEditButton.onClick.AddListener(() => 
+        clearEditButton.onClick.AddListener(() =>
         {
             ClearEditClick();
         });
@@ -66,7 +68,7 @@ public class ButtonClick : MonoBehaviour
 
     public void NumberClick(string text)
     {
-        if(isCalculation)
+        if (isCalculation)
         {
             CalcManager.Instance.ResultText = "";
             isCalculation = false;
@@ -82,25 +84,40 @@ public class ButtonClick : MonoBehaviour
 
     public void SymbolClick(string text)
     {
-        isCalculation = true;
-        // 심볼 클릭했을 때, 입력되어 있던 숫자가 큐에 들어가야한다.
-        if (char.TryParse(text, out char symbol))
+        string tmpText = CalcManager.Instance.ResultText;
+        // symbolClick으로 토글하기전에 true 라는건 숫자를아직 누르지 않았을 경우를 뜻함
+        if (isCalculation)
         {
-            string tmpText = CalcManager.Instance.ResultText;
+            CalcManager.Instance.symbolQueue.Enqueue(text);
+            CalcManager.Instance.symbolQueue.Clear();
+        }
+        else
+        {
+            isCalculation = true;
 
+            // 심볼 클릭했을 때, 입력되어 있던 숫자가 큐에 들어가야한다.
             // 큐에 숫자, 연산자 가 들어가고
             CalcManager.Instance.numberQueue.Enqueue(tmpText);
-            if(CalcManager.Instance.numberQueue.Count >= 2)
-            {
-                object result = CalcQueue(CalcManager.Instance.numberQueue, CalcManager.Instance.symbolQueue);
-                Debug.Log(result);
-                CalcManager.Instance.numberQueue.Enqueue(result.ToString());
-            }
-
             CalcManager.Instance.symbolQueue.Enqueue(text);
+        }
 
-            // 
-            CalcManager.Instance.ExpressionText = CalcManager.Instance.numberQueue.Peek()  + text;
+        foreach (var symbol in CalcManager.Instance.symbolQueue)
+        {
+            Debug.Log(symbol);
+        }
+
+        if (CalcManager.Instance.numberQueue.Count >= 2)
+        {
+            object result = CalcQueue();
+            CalcManager.Instance.numberQueue.Clear();
+            CalcManager.Instance.numberQueue.Enqueue(result.ToString());
+            CalcManager.Instance.ResultText = result.ToString();
+
+            CalcManager.Instance.ExpressionText = CalcManager.Instance.numberQueue.Peek() + CalcManager.Instance.symbolQueue.Peek();
+        }
+        else
+        {
+            CalcManager.Instance.ExpressionText = tmpText + text;
         }
     }
 
@@ -116,14 +133,14 @@ public class ButtonClick : MonoBehaviour
         CalcManager.Instance.ResultText = "";
     }
 
-    public object CalcQueue(Queue<string> numberQueue, Queue<string> symbolQueue)
+    public object CalcQueue()
     {
         object result = null;
 
-        string leftValue = numberQueue.Dequeue();
-        string rightValue = numberQueue.Dequeue();
+        string leftValue = CalcManager.Instance.numberQueue.Dequeue();
+        string rightValue = CalcManager.Instance.numberQueue.Dequeue();
 
-        string symbol = symbolQueue.Dequeue();
+        string symbol = CalcManager.Instance.symbolQueue.Dequeue();
 
 
         Calculator calc = new Calculator() { leftValue = leftValue, rightValue = rightValue };
@@ -136,9 +153,6 @@ public class ButtonClick : MonoBehaviour
             result = calc.Multiply();
         else if (symbol.Equals("/"))
             result = calc.Division();
-
-
-        Debug.Log($"{leftValue} {symbol} {rightValue} = {result}");
 
         return result;
     }

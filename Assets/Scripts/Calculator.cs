@@ -38,12 +38,12 @@ public class Calculator
         {
             LongLongCalculator tempCalc = new LongLongCalculator() { leftValue = longLeftValue, rightValue = longRightValue };
             tempCalc.Plus();
-            Debug.Log("°á°ú : " +  tempCalc.result);
+            
             return tempCalc.result;
         }
         else if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGDOUBLE)
         {
-            Debug.Log("PLUS : LONGDOUBLE");
+            
             LongDoubleCalculator tempCalc = new LongDoubleCalculator() { leftValue = longLeftValue, rightValue = doubleRightValue };
             tempCalc.Plus();
 
@@ -51,7 +51,7 @@ public class Calculator
         }
         else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLELONG)
         {
-            Debug.Log("PLUS : DOUBLELONG");
+            
             DoubleLongCalculator tempCalc = new DoubleLongCalculator() { leftValue = doubleLeftValue, rightValue = longRightValue };
             tempCalc.Plus();
 
@@ -59,7 +59,7 @@ public class Calculator
         }
         else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLEDOUBLE)
         {
-            Debug.Log("PLUS : DOUBLEDOUBLE");
+            
             DoubleDoubleCalculator tempCalc = new DoubleDoubleCalculator() { leftValue = doubleLeftValue, rightValue = doubleRightValue };
             tempCalc.Plus();
 
