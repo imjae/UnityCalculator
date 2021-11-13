@@ -85,6 +85,15 @@ public class ButtonClick : MonoBehaviour
 
             CalcManager.Instance.symbolQueue.Enqueue(text);
 
+            if(CalcManager.Instance.numberQueue.Count >= 2)
+            {
+                object result = CalcQueue(CalcManager.Instance.numberQueue, CalcManager.Instance.symbolQueue);
+                CalcManager.Instance.numberQueue.Enqueue(result.ToString());
+            }
+
+
+            CalcManager.Instance.ExpressionText = CalcManager.Instance.numberQueue.Peek()  + text;
+
 
             // CalcManager.Instance.ExpressionText = 
         }
@@ -101,8 +110,10 @@ public class ButtonClick : MonoBehaviour
         CalcManager.Instance.ResultText = "";
     }
 
-    public Calculator CalcQueue(Queue<string> numberQueue, Queue<string> symbolQueue)
+    public object CalcQueue(Queue<string> numberQueue, Queue<string> symbolQueue)
     {
+        object result = null;
+
         string leftValue = numberQueue.Dequeue();
         string rightValue = numberQueue.Dequeue();
 
@@ -111,14 +122,14 @@ public class ButtonClick : MonoBehaviour
         Calculator calc = new Calculator() { leftValue = leftValue, rightValue = rightValue };
 
         if (symbol.Equals("+"))
-            calc.Plus();
+            result = calc.Plus();
         else if (symbol.Equals("-"))
-            calc.Subtract();
+            result = calc.Subtract();
         else if (symbol.Equals("*"))
-            calc.Multiply();
+            result = calc.Multiply();
         else if (symbol.Equals("/"))
-            calc.Division();
+            result = calc.Division();
 
-        return calc;
+        return result;
     }
 }
