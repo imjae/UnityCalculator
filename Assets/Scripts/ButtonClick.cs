@@ -101,11 +101,6 @@ public class ButtonClick : MonoBehaviour
             CalcManager.Instance.symbolQueue.Enqueue(text);
         }
 
-        foreach (var symbol in CalcManager.Instance.symbolQueue)
-        {
-            Debug.Log(symbol);
-        }
-
         if (CalcManager.Instance.numberQueue.Count >= 2)
         {
             object result = CalcQueue();
