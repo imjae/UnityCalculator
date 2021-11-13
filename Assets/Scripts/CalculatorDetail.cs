@@ -10,28 +10,28 @@ public class LongLongCalculator : CalculatorTemplate<long, long>
     public void Plus()
     {
         PlusTemplate((leftValue, rightValue) => {
-            result = leftValue + rightValue;
+            this.result = leftValue + rightValue;
         });
     }
 
     public void Subtract()
     {
         SubtractTemplate((leftValue, rightValue) => {
-            result = leftValue - rightValue;
+            this.result = leftValue - rightValue;
         });
     }
     
     public void Multiply()
     {
         MultiplyTemplate((leftValue, rightValue) => {
-            result = leftValue * rightValue;
+            this.result = leftValue * rightValue;
         });
     }
     
     public void Division()
     {
         DivisionTemplate((leftValue, rightValue) => {
-            result = leftValue / rightValue;
+            this.result = leftValue / rightValue;
         });
     }
 }
@@ -45,28 +45,28 @@ public class LongDoubleCalculator : CalculatorTemplate<long, double>
     public void Plus()
     {
         PlusTemplate((leftValue, rightValue) => {
-            result = leftValue + rightValue;
+            this.result = leftValue + rightValue;
         });
     }
 
     public void Subtract()
     {
         SubtractTemplate((leftValue, rightValue) => {
-            result = leftValue - rightValue;
+            this.result = leftValue - rightValue;
         });
     }
     
     public void Multiply()
     {
         MultiplyTemplate((leftValue, rightValue) => {
-            result = leftValue * rightValue;
+            this.result = leftValue * rightValue;
         });
     }
     
     public void Division()
     {
         DivisionTemplate((leftValue, rightValue) => {
-            result = leftValue / rightValue;
+            this.result = leftValue / rightValue;
         });
     }
 }
@@ -81,28 +81,28 @@ public class DoubleLongCalculator : CalculatorTemplate<double, long>
     public void Plus()
     {
         PlusTemplate((leftValue, rightValue) => {
-            result = leftValue + rightValue;
+            this.result = leftValue + rightValue;
         });
     }
 
     public void Subtract()
     {
         SubtractTemplate((leftValue, rightValue) => {
-            result = leftValue - rightValue;
+            this.result = leftValue - rightValue;
         });
     }
     
     public void Multiply()
     {
         MultiplyTemplate((leftValue, rightValue) => {
-            result = leftValue * rightValue;
+            this.result = leftValue * rightValue;
         });
     }
     
     public void Division()
     {
         DivisionTemplate((leftValue, rightValue) => {
-            result = leftValue / rightValue;
+            this.result = leftValue / rightValue;
         });
     }
 }
@@ -118,28 +118,28 @@ public class DoubleDoubleCalculator : CalculatorTemplate<double, double>
     public void Plus()
     {
         PlusTemplate((leftValue, rightValue) => {
-            result = leftValue + rightValue;
+            this.result = leftValue + rightValue;
         });
     }
 
     public void Subtract()
     {
         SubtractTemplate((leftValue, rightValue) => {
-            result = leftValue - rightValue;
+            this.result = leftValue - rightValue;
         });
     }
     
     public void Multiply()
     {
         MultiplyTemplate((leftValue, rightValue) => {
-            result = leftValue * rightValue;
+            this.result = leftValue * rightValue;
         });
     }
     
     public void Division()
     {
         DivisionTemplate((leftValue, rightValue) => {
-            result = leftValue / rightValue;
+            this.result = leftValue / rightValue;
         });
     }
 }

@@ -35,8 +35,8 @@ public class CalcManager : MonoBehaviour
         set { expression.text = value; }
     }
 
-    public Queue<long> numberQueue;
-    public Queue<char> symbolQueue;
+    public Queue<string> numberQueue;
+    public Queue<string> symbolQueue;
 
     /// <summary>
     /// CalcManager : 싱글톤 클래스로 전역변수로 관리할 오브젝트들을 가지고 있다
@@ -44,8 +44,8 @@ public class CalcManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        numberQueue = new Queue<long>();
-        symbolQueue = new Queue<char>();
+        numberQueue = new Queue<string>();
+        symbolQueue = new Queue<string>();
     }
 
     public static string TransNumberFormat(string text)
