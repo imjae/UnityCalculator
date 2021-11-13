@@ -14,6 +14,8 @@ public class ButtonClick : MonoBehaviour
 
     private string buttonName;
 
+    private bool isCalculation = false;
+
     void Start()
     {
         // 클릭 이벤트리스터 추가
@@ -64,6 +66,12 @@ public class ButtonClick : MonoBehaviour
 
     public void NumberClick(string text)
     {
+        if(isCalculation)
+        {
+            CalcManager.Instance.ResultText = "";
+            isCalculation = false;
+        }
+
         if (long.TryParse(text, out long result))
         {
             string prevResult = CalcManager.Instance.ResultText;
@@ -74,7 +82,7 @@ public class ButtonClick : MonoBehaviour
 
     public void SymbolClick(string text)
     {
-        Debug.Log(text);
+        isCalculation = true;
         // 심볼 클릭했을 때, 입력되어 있던 숫자가 큐에 들어가야한다.
         if (char.TryParse(text, out char symbol))
         {
@@ -82,20 +90,17 @@ public class ButtonClick : MonoBehaviour
 
             // 큐에 숫자, 연산자 가 들어가고
             CalcManager.Instance.numberQueue.Enqueue(tmpText);
-
-            CalcManager.Instance.symbolQueue.Enqueue(text);
-
             if(CalcManager.Instance.numberQueue.Count >= 2)
             {
                 object result = CalcQueue(CalcManager.Instance.numberQueue, CalcManager.Instance.symbolQueue);
+                Debug.Log(result);
                 CalcManager.Instance.numberQueue.Enqueue(result.ToString());
             }
 
+            CalcManager.Instance.symbolQueue.Enqueue(text);
 
+            // 
             CalcManager.Instance.ExpressionText = CalcManager.Instance.numberQueue.Peek()  + text;
-
-
-            // CalcManager.Instance.ExpressionText = 
         }
     }
 
@@ -104,6 +109,7 @@ public class ButtonClick : MonoBehaviour
         CalcManager.Instance.numberQueue.Clear();
         CalcManager.Instance.symbolQueue.Clear();
         CalcManager.Instance.ResultText = "";
+        CalcManager.Instance.ExpressionText = "";
     }
     public void ClearEditClick()
     {
@@ -119,6 +125,7 @@ public class ButtonClick : MonoBehaviour
 
         string symbol = symbolQueue.Dequeue();
 
+
         Calculator calc = new Calculator() { leftValue = leftValue, rightValue = rightValue };
 
         if (symbol.Equals("+"))
@@ -129,6 +136,9 @@ public class ButtonClick : MonoBehaviour
             result = calc.Multiply();
         else if (symbol.Equals("/"))
             result = calc.Division();
+
+
+        Debug.Log($"{leftValue} {symbol} {rightValue} = {result}");
 
         return result;
     }
