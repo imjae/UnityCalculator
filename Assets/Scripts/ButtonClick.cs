@@ -7,8 +7,8 @@ using TMPro;
 
 public class ButtonClick : MonoBehaviour
 {
-    public Button[] numberButtonArr;
-    public Button[] symbolButtonArr;
+    public List<Button> numberButtonList;
+    public List<Button> symbolButtonList;
     public Button clearButton;
     public Button clearEditButton;
 
@@ -16,12 +16,21 @@ public class ButtonClick : MonoBehaviour
 
     void Start()
     {
+        // 클릭 이벤트리스터 추가
+        #region Button : AddClickListener
         ClearButtonAddListener();
-        for (int i = 0; i <= 9; i++)
-        {
-            NumberButtonAddListener(numberButtonArr[i]);
-        }
+        ClearEditButtonAddListener();
+        numberButtonList.ForEach(button => {
+            NumberButtonAddListener(button);
+        });
+        symbolButtonList.ForEach(button => {
+            SymbolButtonAddListener(button);
+        });
+        #endregion
+
+
     }
+
 
     void NumberButtonAddListener(Button clickedButton)
     {
@@ -30,12 +39,26 @@ public class ButtonClick : MonoBehaviour
             NumberClick(clickedButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text);
         });
     }
+    void SymbolButtonAddListener(Button clickedButton)
+    {
+        clickedButton.onClick.AddListener(() =>
+        {
+            SymbolClick(clickedButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text);
+        });
+    }
 
     void ClearButtonAddListener()
     {
         clearButton.onClick.AddListener(() => 
         {
             ClearClick();
+        });
+    }
+    void ClearEditButtonAddListener()
+    {
+        clearEditButton.onClick.AddListener(() => 
+        {
+            ClearEditClick();
         });
     }
 
@@ -51,6 +74,7 @@ public class ButtonClick : MonoBehaviour
 
     public void SymbolClick(string text)
     {
+        Debug.Log(text);
         // 심볼 클릭했을 때, 입력되어 있던 숫자가 큐에 들어가야한다.
         if (char.TryParse(text, out char symbol))
         {
@@ -70,6 +94,10 @@ public class ButtonClick : MonoBehaviour
     {
         CalcManager.Instance.numberQueue.Clear();
         CalcManager.Instance.symbolQueue.Clear();
+        CalcManager.Instance.ResultText = "";
+    }
+    public void ClearEditClick()
+    {
         CalcManager.Instance.ResultText = "";
     }
 

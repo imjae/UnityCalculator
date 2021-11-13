@@ -1592,7 +1592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ae50a557472fa44924862e1febfe98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberButtonArr:
+  numberButtonList:
   - {fileID: 1064114047}
   - {fileID: 1712065998}
   - {fileID: 743924753}
@@ -1603,7 +1603,7 @@ MonoBehaviour:
   - {fileID: 548485494}
   - {fileID: 1853710942}
   - {fileID: 2013948627}
-  symbolButtonArr:
+  symbolButtonList:
   - {fileID: 302498828}
   - {fileID: 1262928873}
   - {fileID: 1764227752}
