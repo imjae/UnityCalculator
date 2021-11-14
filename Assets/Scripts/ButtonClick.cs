@@ -11,6 +11,7 @@ public class ButtonClick : MonoBehaviour
     public List<Button> symbolButtonList;
     public Button clearButton;
     public Button clearEditButton;
+    public Button backButton;
 
     private string buttonName;
 
@@ -22,6 +23,7 @@ public class ButtonClick : MonoBehaviour
         #region Button : AddClickListener
         ClearButtonAddListener();
         ClearEditButtonAddListener();
+        BackButtonAddListener();
         numberButtonList.ForEach(button =>
         {
             NumberButtonAddListener(button);
@@ -32,10 +34,9 @@ public class ButtonClick : MonoBehaviour
         });
         #endregion
 
-
     }
 
-
+    #region ButtonAddListener 메소드 모음
     void NumberButtonAddListener(Button clickedButton)
     {
         clickedButton.onClick.AddListener(() =>
@@ -65,7 +66,15 @@ public class ButtonClick : MonoBehaviour
             ClearEditClick();
         });
     }
-
+    void BackButtonAddListener()
+    {
+        backButton.onClick.AddListener(() =>
+        {
+            BackButtonClick();
+        });
+    }
+    #endregion
+    #region ButtonClick 실제 동작 모음
     public void NumberClick(string text)
     {
         if (isCalculation)
@@ -81,7 +90,6 @@ public class ButtonClick : MonoBehaviour
             CalcManager.Instance.ResultText = String.Format("{0:#,0}", prevResult);
         }
     }
-
     public void SymbolClick(string text)
     {
         string tmpText = CalcManager.Instance.ResultText;
@@ -127,6 +135,13 @@ public class ButtonClick : MonoBehaviour
     {
         CalcManager.Instance.ResultText = "";
     }
+
+    public void BackButtonClick()
+    {
+        string tmpResultText = CalcManager.Instance.ResultText;
+        CalcManager.Instance.ResultText = tmpResultText.Substring(0, tmpResultText.Length-1);
+    }
+    #endregion 
 
     public object CalcQueue()
     {
