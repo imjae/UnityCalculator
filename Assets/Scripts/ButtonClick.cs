@@ -12,6 +12,7 @@ public class ButtonClick : MonoBehaviour
     public Button clearButton;
     public Button clearEditButton;
     public Button backButton;
+    public Button PNButton;
 
     private string buttonName;
 
@@ -24,6 +25,7 @@ public class ButtonClick : MonoBehaviour
         ClearButtonAddListener();
         ClearEditButtonAddListener();
         BackButtonAddListener();
+        PNButtonAddListener();
         numberButtonList.ForEach(button =>
         {
             NumberButtonAddListener(button);
@@ -71,6 +73,13 @@ public class ButtonClick : MonoBehaviour
         backButton.onClick.AddListener(() =>
         {
             BackButtonClick();
+        });
+    }
+    void PNButtonAddListener()
+    {
+        PNButton.onClick.AddListener(() =>
+        {
+            PNButtonClick();
         });
     }
     #endregion
@@ -139,7 +148,21 @@ public class ButtonClick : MonoBehaviour
     public void BackButtonClick()
     {
         string tmpResultText = CalcManager.Instance.ResultText;
-        CalcManager.Instance.ResultText = tmpResultText.Substring(0, tmpResultText.Length-1);
+        CalcManager.Instance.ResultText = tmpResultText.Substring(0, tmpResultText.Length - 1);
+    }
+    public void PNButtonClick()
+    {
+        isCalculation = false;
+        string tmpResultText = CalcManager.Instance.ResultText;
+        if (tmpResultText.Substring(0, 1) != "-")
+        {
+            tmpResultText = "-" + tmpResultText;
+        }
+        else
+        {
+            tmpResultText = tmpResultText.Substring(1, tmpResultText.Length-1);
+        }
+        CalcManager.Instance.ResultText = tmpResultText;
     }
     #endregion 
 
