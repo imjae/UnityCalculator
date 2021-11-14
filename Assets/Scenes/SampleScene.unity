@@ -1613,6 +1613,7 @@ MonoBehaviour:
   backButton: {fileID: 1554477921}
   PNButton: {fileID: 202301707}
   DotButton: {fileID: 1476624339}
+  EqualButton: {fileID: 2076988911}
 --- !u!1 &635189167
 GameObject:
   m_ObjectHideFlags: 0

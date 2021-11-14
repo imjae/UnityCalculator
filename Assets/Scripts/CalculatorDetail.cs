@@ -35,14 +35,21 @@ public class LongLongCalculator : CalculatorTemplate<long, long>
     public void Division()
     {
         double tmpLeftValue = 0.0;
-        if (leftValue % rightValue != 0)
+        if (rightValue == 0)
         {
-            tmpLeftValue = leftValue;
-            this.result = tmpLeftValue / rightValue;
+            this.result = "Cannot be divided by 0";
         }
         else
         {
-            this.result = leftValue / rightValue;
+            if (leftValue % rightValue != 0)
+            {
+                tmpLeftValue = leftValue;
+                this.result = tmpLeftValue / rightValue;
+            }
+            else
+            {
+                this.result = leftValue / rightValue;
+            }
         }
         // DivisionTemplate((leftValue, rightValue) => {
         //     this.result = leftValue / rightValue;

@@ -14,6 +14,7 @@ public class ButtonClick : MonoBehaviour
     public Button backButton;
     public Button PNButton;
     public Button DotButton;
+    public Button EqualButton;
 
     private string buttonName;
 
@@ -28,6 +29,7 @@ public class ButtonClick : MonoBehaviour
         BackButtonAddListener();
         PNButtonAddListener();
         DotButtonAddListener();
+        EqualButtonAddListener();
         numberButtonList.ForEach(button =>
         {
             NumberButtonAddListener(button);
@@ -91,6 +93,13 @@ public class ButtonClick : MonoBehaviour
             DotButtonClick();
         });
     }
+    void EqualButtonAddListener()
+    {
+        EqualButton.onClick.AddListener(() =>
+        {
+            EqualButtonClick();
+        });
+    }
     #endregion
     #region ButtonClick 실제 동작 모음
     public void NumberClick(string text)
@@ -129,7 +138,7 @@ public class ButtonClick : MonoBehaviour
 
         if (CalcManager.Instance.numberQueue.Count >= 2)
         {
-            object result = CalcQueue();
+            object result = SymbolCalcQueue();
             CalcManager.Instance.numberQueue.Clear();
             CalcManager.Instance.numberQueue.Enqueue(result.ToString());
             CalcManager.Instance.ResultText = result.ToString();
@@ -176,27 +185,41 @@ public class ButtonClick : MonoBehaviour
     public void DotButtonClick()
     {
         string tmpResultText = CalcManager.Instance.ResultText;
-        Debug.Log("인덱스 : " + tmpResultText.IndexOf("."));
         if (tmpResultText.IndexOf(".") == -1)
         {
             tmpResultText += ".";
-            Debug.Log(tmpResultText);
             CalcManager.Instance.ResultText = tmpResultText;
         }
 
-        // if (isCalculation)
-        // {
-        //     CalcManager.Instance.ResultText = "0.";
-        //     isCalculation = false;
-        // }
-        // else
-        // {
-        //     CalcManager.Instance.ResultText = tmpResultText;
-        // }
+        if (isCalculation)
+        {
+            CalcManager.Instance.ResultText = "0.";
+            isCalculation = false;
+        }
+        else
+        {
+            CalcManager.Instance.ResultText = tmpResultText;
+        }
+    }
+
+    public void EqualButtonClick()
+    {
+        string tmpText = CalcManager.Instance.ResultText;
+
+        isCalculation = true;
+        CalcManager.Instance.numberQueue.Enqueue(tmpText);
+
+        if (CalcManager.Instance.numberQueue.Count >= 2)
+        {
+            object result = EqualCalcQueue();
+            CalcManager.Instance.numberQueue.Clear();
+            CalcManager.Instance.numberQueue.Enqueue(result.ToString());
+            CalcManager.Instance.ResultText = result.ToString();
+        }
     }
     #endregion 
 
-    public object CalcQueue()
+    public object SymbolCalcQueue()
     {
         object result = null;
 
@@ -205,6 +228,31 @@ public class ButtonClick : MonoBehaviour
 
         string symbol = CalcManager.Instance.symbolQueue.Dequeue();
 
+
+        Calculator calc = new Calculator() { leftValue = leftValue, rightValue = rightValue };
+
+        if (symbol.Equals("+"))
+            result = calc.Plus();
+        else if (symbol.Equals("-"))
+            result = calc.Subtract();
+        else if (symbol.Equals("*"))
+            result = calc.Multiply();
+        else if (symbol.Equals("/"))
+            result = calc.Division();
+
+        return result;
+    }
+
+    public object EqualCalcQueue()
+    {
+        object result = null;
+
+        string leftValue = CalcManager.Instance.numberQueue.Dequeue();
+        string rightValue = CalcManager.Instance.numberQueue.Dequeue();
+
+        string symbol = CalcManager.Instance.symbolQueue.Dequeue();
+
+        CalcManager.Instance.ExpressionText = leftValue + symbol + rightValue + "=";
 
         Calculator calc = new Calculator() { leftValue = leftValue, rightValue = rightValue };
 
