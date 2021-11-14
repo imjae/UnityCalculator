@@ -13,6 +13,7 @@ public class ButtonClick : MonoBehaviour
     public Button clearEditButton;
     public Button backButton;
     public Button PNButton;
+    public Button DotButton;
 
     private string buttonName;
 
@@ -26,6 +27,7 @@ public class ButtonClick : MonoBehaviour
         ClearEditButtonAddListener();
         BackButtonAddListener();
         PNButtonAddListener();
+        DotButtonAddListener();
         numberButtonList.ForEach(button =>
         {
             NumberButtonAddListener(button);
@@ -80,6 +82,13 @@ public class ButtonClick : MonoBehaviour
         PNButton.onClick.AddListener(() =>
         {
             PNButtonClick();
+        });
+    }
+    void DotButtonAddListener()
+    {
+        DotButton.onClick.AddListener(() =>
+        {
+            DotButtonClick();
         });
     }
     #endregion
@@ -160,9 +169,30 @@ public class ButtonClick : MonoBehaviour
         }
         else
         {
-            tmpResultText = tmpResultText.Substring(1, tmpResultText.Length-1);
+            tmpResultText = tmpResultText.Substring(1, tmpResultText.Length - 1);
         }
         CalcManager.Instance.ResultText = tmpResultText;
+    }
+    public void DotButtonClick()
+    {
+        string tmpResultText = CalcManager.Instance.ResultText;
+        Debug.Log("¿Œµ¶Ω∫ : " + tmpResultText.IndexOf("."));
+        if (tmpResultText.IndexOf(".") == -1)
+        {
+            tmpResultText += ".";
+            Debug.Log(tmpResultText);
+            CalcManager.Instance.ResultText = tmpResultText;
+        }
+
+        // if (isCalculation)
+        // {
+        //     CalcManager.Instance.ResultText = "0.";
+        //     isCalculation = false;
+        // }
+        // else
+        // {
+        //     CalcManager.Instance.ResultText = tmpResultText;
+        // }
     }
     #endregion 
 

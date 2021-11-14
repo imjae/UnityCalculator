@@ -26,7 +26,15 @@ public class CalcManager : MonoBehaviour
     public string ResultText
     {
         get { return result.text; }
-        set { result.text = TransNumberFormat(value); }
+        set {
+            Debug.Log("Value : " + value);
+            if(!value.Equals("") && value.Substring(value.Length-1, 1).Equals("."))
+            {
+                result.text = value;
+            }
+            else
+                result.text = TransNumberFormat(value); 
+        }
     }
 
     public string ExpressionText
@@ -57,9 +65,9 @@ public class CalcManager : MonoBehaviour
         {
             if (int.TryParse(text, out int intResult))
                 result = intResult + "";
-            else if (float.TryParse(text, out float floatResult))
+            if (float.TryParse(text, out float floatResult))
                 result = floatResult + "";
-            else if (double.TryParse(text, out double doubleResult))
+            if (double.TryParse(text, out double doubleResult))
                 result = doubleResult + "";
         }
 

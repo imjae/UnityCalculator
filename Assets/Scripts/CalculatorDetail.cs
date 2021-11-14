@@ -23,7 +23,7 @@ public class LongLongCalculator : CalculatorTemplate<long, long>
         //     this.result = leftValue - rightValue;
         // });
     }
-    
+
     public void Multiply()
     {
         this.result = leftValue * rightValue;
@@ -31,10 +31,19 @@ public class LongLongCalculator : CalculatorTemplate<long, long>
         //     this.result = leftValue * rightValue;
         // });
     }
-    
+
     public void Division()
     {
-        this.result = leftValue / rightValue;
+        double tmpLeftValue = 0.0;
+        if (leftValue % rightValue != 0)
+        {
+            tmpLeftValue = leftValue;
+            this.result = tmpLeftValue / rightValue;
+        }
+        else
+        {
+            this.result = leftValue / rightValue;
+        }
         // DivisionTemplate((leftValue, rightValue) => {
         //     this.result = leftValue / rightValue;
         // });
@@ -49,30 +58,34 @@ public class LongDoubleCalculator : CalculatorTemplate<long, double>
     public object result;
     public void Plus()
     {
-        PlusTemplate((leftValue, rightValue) => {
-            this.result = leftValue + rightValue;
-        });
+        this.result = leftValue + rightValue;
+        // PlusTemplate((leftValue, rightValue) => {
+        //     this.result = leftValue + rightValue;
+        // });
     }
 
     public void Subtract()
     {
-        SubtractTemplate((leftValue, rightValue) => {
-            this.result = leftValue - rightValue;
-        });
+        this.result = leftValue - rightValue;
+        // SubtractTemplate((leftValue, rightValue) => {
+        //     this.result = leftValue - rightValue;
+        // });
     }
-    
+
     public void Multiply()
     {
-        MultiplyTemplate((leftValue, rightValue) => {
-            this.result = leftValue * rightValue;
-        });
+        this.result = leftValue * rightValue;
+        // MultiplyTemplate((leftValue, rightValue) => {
+        //     this.result = leftValue * rightValue;
+        // });
     }
-    
+
     public void Division()
     {
-        DivisionTemplate((leftValue, rightValue) => {
-            this.result = leftValue / rightValue;
-        });
+        this.result = leftValue / rightValue;
+        // DivisionTemplate((leftValue, rightValue) => {
+        //     this.result = leftValue / rightValue;
+        // });
     }
 }
 
@@ -85,30 +98,34 @@ public class DoubleLongCalculator : CalculatorTemplate<double, long>
     public object result;
     public void Plus()
     {
-        PlusTemplate((leftValue, rightValue) => {
-            this.result = leftValue + rightValue;
-        });
+        this.result = leftValue + rightValue;
+        // PlusTemplate((leftValue, rightValue) => {
+        //     this.result = leftValue + rightValue;
+        // });
     }
 
     public void Subtract()
     {
-        SubtractTemplate((leftValue, rightValue) => {
-            this.result = leftValue - rightValue;
-        });
+        this.result = leftValue - rightValue;
+        // SubtractTemplate((leftValue, rightValue) => {
+        //     this.result = leftValue - rightValue;
+        // });
     }
-    
+
     public void Multiply()
     {
-        MultiplyTemplate((leftValue, rightValue) => {
-            this.result = leftValue * rightValue;
-        });
+        this.result = leftValue * rightValue;
+        // MultiplyTemplate((leftValue, rightValue) => {
+        //     this.result = leftValue * rightValue;
+        // });
     }
-    
+
     public void Division()
     {
-        DivisionTemplate((leftValue, rightValue) => {
-            this.result = leftValue / rightValue;
-        });
+        this.result = leftValue / rightValue;
+        // DivisionTemplate((leftValue, rightValue) => {
+        //     this.result = leftValue / rightValue;
+        // });
     }
 }
 
@@ -122,29 +139,33 @@ public class DoubleDoubleCalculator : CalculatorTemplate<double, double>
     public object result;
     public void Plus()
     {
-        PlusTemplate((leftValue, rightValue) => {
-            this.result = leftValue + rightValue;
-        });
+        this.result = leftValue + rightValue;
+        // PlusTemplate((leftValue, rightValue) => {
+        //     this.result = leftValue + rightValue;
+        // });
     }
 
     public void Subtract()
     {
-        SubtractTemplate((leftValue, rightValue) => {
-            this.result = leftValue - rightValue;
-        });
+        this.result = leftValue - rightValue;
+        // SubtractTemplate((leftValue, rightValue) => {
+        //     this.result = leftValue - rightValue;
+        // });
     }
-    
+
     public void Multiply()
     {
-        MultiplyTemplate((leftValue, rightValue) => {
-            this.result = leftValue * rightValue;
-        });
+        this.result = leftValue * rightValue;
+        // MultiplyTemplate((leftValue, rightValue) => {
+        //     this.result = leftValue * rightValue;
+        // });
     }
-    
+
     public void Division()
     {
-        DivisionTemplate((leftValue, rightValue) => {
-            this.result = leftValue / rightValue;
-        });
+        this.result = leftValue / rightValue;
+        // DivisionTemplate((leftValue, rightValue) => {
+        //     this.result = leftValue / rightValue;
+        // });
     }
 }
