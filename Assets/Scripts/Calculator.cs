@@ -34,36 +34,34 @@ public class Calculator
 
     public object Plus()
     {
+        object result = null;
         if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGLONG)
         {
-            LongLongCalculator<long, long> tempCalc = new LongLongCalculator<long, long>() { leftValue = longLeftValue, rightValue = longRightValue };
-            tempCalc.Plus();
-            
-            return tempCalc.result;
+            PairType<long, long> tempCalc = new PairType<long, long>() { lValue = longLeftValue, rValue = longRightValue };
+            result = tempCalc.lValue + tempCalc.rValue;
+
+            return result;
         }
         else if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGDOUBLE)
         {
-            
-            LongDoubleCalculator tempCalc = new LongDoubleCalculator() { leftValue = longLeftValue, rightValue = doubleRightValue };
-            tempCalc.Plus();
+            PairType<long, double> tempCalc = new PairType<long, double>() { lValue = longLeftValue, rValue = doubleRightValue };
+            result = tempCalc.lValue + tempCalc.rValue;
 
-            return tempCalc.result;
+            return result;
         }
         else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLELONG)
         {
-            
-            DoubleLongCalculator tempCalc = new DoubleLongCalculator() { leftValue = doubleLeftValue, rightValue = longRightValue };
-            tempCalc.Plus();
+            PairType<double, long> tempCalc = new PairType<double, long>() { lValue = doubleLeftValue, rValue = longRightValue };
+            result = tempCalc.lValue + tempCalc.rValue;
 
-            return tempCalc.result;
+            return result;
         }
         else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLEDOUBLE)
         {
-            
-            DoubleDoubleCalculator tempCalc = new DoubleDoubleCalculator() { leftValue = doubleLeftValue, rightValue = doubleRightValue };
-            tempCalc.Plus();
+            PairType<double, double> tempCalc = new PairType<double, double>() { lValue = doubleLeftValue, rValue = doubleRightValue };
+            result = tempCalc.lValue + tempCalc.rValue;
 
-            return tempCalc.result;
+            return result;
         }
         else
             return (object)0;
@@ -71,33 +69,34 @@ public class Calculator
 
     public object Subtract()
     {
+        object result = null;
         if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGLONG)
         {
-            LongLongCalculator<long, long> tempCalc = new LongLongCalculator<long, long>() { leftValue = longLeftValue, rightValue = longRightValue };
-            tempCalc.Subtract();
+            PairType<long, long> tempCalc = new PairType<long, long>() { lValue = longLeftValue, rValue = longRightValue };
+            result = tempCalc.lValue - tempCalc.rValue;
 
-            return tempCalc.result;
+            return result;
         }
         else if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGDOUBLE)
         {
-            LongDoubleCalculator tempCalc = new LongDoubleCalculator() { leftValue = longLeftValue, rightValue = doubleRightValue };
-            tempCalc.Subtract();
+            PairType<long, double> tempCalc = new PairType<long, double>() { lValue = longLeftValue, rValue = doubleRightValue };
+            result = tempCalc.lValue - tempCalc.rValue;
 
-            return tempCalc.result;
+            return result;
         }
         else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLELONG)
         {
-            DoubleLongCalculator tempCalc = new DoubleLongCalculator() { leftValue = doubleLeftValue, rightValue = longRightValue };
-            tempCalc.Subtract();
+            PairType<double, long> tempCalc = new PairType<double, long>() { lValue = doubleLeftValue, rValue = longRightValue };
+            result = tempCalc.lValue - tempCalc.rValue;
 
-            return tempCalc.result;
+            return result;
         }
         else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLEDOUBLE)
         {
-            DoubleDoubleCalculator tempCalc = new DoubleDoubleCalculator() { leftValue = doubleLeftValue, rightValue = doubleRightValue };
-            tempCalc.Subtract();
+            PairType<double, double> tempCalc = new PairType<double, double>() { lValue = doubleLeftValue, rValue = doubleRightValue };
+            result = tempCalc.lValue - tempCalc.rValue;
 
-            return tempCalc.result;
+            return result;
         }
         else
             return (object)0;
@@ -105,33 +104,34 @@ public class Calculator
 
     public object Multiply()
     {
+        object result = null;
         if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGLONG)
         {
-            LongLongCalculator<long, long> tempCalc = new LongLongCalculator<long, long>() { leftValue = longLeftValue, rightValue = longRightValue };
-            tempCalc.Multiply();
+            PairType<long, long> tempCalc = new PairType<long, long>() { lValue = longLeftValue, rValue = longRightValue };
+            result = tempCalc.lValue * tempCalc.rValue;
 
-            return tempCalc.result;
+            return result;
         }
         else if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGDOUBLE)
         {
-            LongDoubleCalculator tempCalc = new LongDoubleCalculator() { leftValue = longLeftValue, rightValue = doubleRightValue };
-            tempCalc.Multiply();
+            PairType<long, double> tempCalc = new PairType<long, double>() { lValue = longLeftValue, rValue = doubleRightValue };
+            result = tempCalc.lValue * tempCalc.rValue;
 
-            return tempCalc.result;
+            return result;
         }
         else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLELONG)
         {
-            DoubleLongCalculator tempCalc = new DoubleLongCalculator() { leftValue = doubleLeftValue, rightValue = longRightValue };
-            tempCalc.Multiply();
+            PairType<double, long> tempCalc = new PairType<double, long>() { lValue = doubleLeftValue, rValue = longRightValue };
+            result = tempCalc.lValue * tempCalc.rValue;
 
-            return tempCalc.result;
+            return result;
         }
         else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLEDOUBLE)
         {
-            DoubleDoubleCalculator tempCalc = new DoubleDoubleCalculator() { leftValue = doubleLeftValue, rightValue = doubleRightValue };
-            tempCalc.Multiply();
+            PairType<double, double> tempCalc = new PairType<double, double>() { lValue = doubleLeftValue, rValue = doubleRightValue };
+            result = tempCalc.lValue * tempCalc.rValue;
 
-            return tempCalc.result;
+            return result;
         }
         else
             return (object)0;
@@ -139,33 +139,34 @@ public class Calculator
 
     public object Division()
     {
+        object result = null;
         if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGLONG)
         {
-            LongLongCalculator<long, long> tempCalc = new LongLongCalculator<long, long>() { leftValue = longLeftValue, rightValue = longRightValue };
-            tempCalc.Division();
+            PairType<long, long> tempCalc = new PairType<long, long>() { lValue = longLeftValue, rValue = longRightValue };
+            result = tempCalc.lValue / tempCalc.rValue;
 
-            return tempCalc.result;
+            return result;
         }
         else if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGDOUBLE)
         {
-            LongDoubleCalculator tempCalc = new LongDoubleCalculator() { leftValue = longLeftValue, rightValue = doubleRightValue };
-            tempCalc.Division();
+            PairType<long, double> tempCalc = new PairType<long, double>() { lValue = longLeftValue, rValue = doubleRightValue };
+            result = tempCalc.lValue / tempCalc.rValue;
 
-            return tempCalc.result;
+            return result;
         }
         else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLELONG)
         {
-            DoubleLongCalculator tempCalc = new DoubleLongCalculator() { leftValue = doubleLeftValue, rightValue = longRightValue };
-            tempCalc.Division();
+            PairType<double, long> tempCalc = new PairType<double, long>() { lValue = doubleLeftValue, rValue = longRightValue };
+            result = tempCalc.lValue / tempCalc.rValue;
 
-            return tempCalc.result;
+            return result;
         }
         else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLEDOUBLE)
         {
-            DoubleDoubleCalculator tempCalc = new DoubleDoubleCalculator() { leftValue = doubleLeftValue, rightValue = doubleRightValue };
-            tempCalc.Division();
+            PairType<double, double> tempCalc = new PairType<double, double>() { lValue = doubleLeftValue, rValue = doubleRightValue };
+            result = tempCalc.lValue / tempCalc.rValue;
 
-            return tempCalc.result;
+            return result;
         }
         else
             return (object)0;
