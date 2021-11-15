@@ -140,35 +140,42 @@ public class Calculator
     public object Division()
     {
         object result = null;
-        if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGLONG)
-        {
-            PairType<long, long> tempCalc = new PairType<long, long>() { lValue = longLeftValue, rValue = longRightValue };
-            result = tempCalc.lValue / tempCalc.rValue;
 
-            return result;
-        }
-        else if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGDOUBLE)
+        if (rightValue == "0")
         {
-            PairType<long, double> tempCalc = new PairType<long, double>() { lValue = longLeftValue, rValue = doubleRightValue };
-            result = tempCalc.lValue / tempCalc.rValue;
-
-            return result;
-        }
-        else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLELONG)
-        {
-            PairType<double, long> tempCalc = new PairType<double, long>() { lValue = doubleLeftValue, rValue = longRightValue };
-            result = tempCalc.lValue / tempCalc.rValue;
-
-            return result;
-        }
-        else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLEDOUBLE)
-        {
-            PairType<double, double> tempCalc = new PairType<double, double>() { lValue = doubleLeftValue, rValue = doubleRightValue };
-            result = tempCalc.lValue / tempCalc.rValue;
-
+            result = "Cannot devied by 0";
             return result;
         }
         else
-            return (object)0;
+        {
+            if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGLONG)
+            {
+                PairType<long, long> tempCalc = new PairType<long, long>() { lValue = longLeftValue, rValue = longRightValue };
+                if(tempCalc.lValue % tempCalc.rValue != 0)
+                    result = tempCalc.lValue / (double)tempCalc.rValue;
+                else
+                    result = tempCalc.lValue / tempCalc.rValue;
+            }
+            else if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGDOUBLE)
+            {
+                PairType<long, double> tempCalc = new PairType<long, double>() { lValue = longLeftValue, rValue = doubleRightValue };
+                result = tempCalc.lValue / tempCalc.rValue;
+            }
+            else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLELONG)
+            {
+                PairType<double, long> tempCalc = new PairType<double, long>() { lValue = doubleLeftValue, rValue = longRightValue };
+                result = tempCalc.lValue / tempCalc.rValue;
+            }
+            else if (CheckOperator(leftValue, rightValue) == OPERATOR.DOUBLEDOUBLE)
+            {
+                PairType<double, double> tempCalc = new PairType<double, double>() { lValue = doubleLeftValue, rValue = doubleRightValue };
+                result = tempCalc.lValue / tempCalc.rValue;
+            }
+            else
+                result = (object)0;
+        }
+
+        return result;
+
     }
 }
