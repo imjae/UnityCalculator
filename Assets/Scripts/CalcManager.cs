@@ -26,14 +26,19 @@ public class CalcManager : MonoBehaviour
     public string ResultText
     {
         get { return result.text; }
-        set {
-            Debug.Log("Value : " + value);
-            if(!value.Equals("") && value.Substring(value.Length-1, 1).Equals("."))
-            {
+        set
+        {
+            if (!double.TryParse(value, out double outDouble))
                 result.text = value;
-            }
             else
-                result.text = TransNumberFormat(value); 
+            {
+                if (!value.Equals("") && value.Substring(value.Length - 1, 1).Equals("."))
+                {
+                    result.text = value;
+                }
+                else
+                    result.text = TransNumberFormat(value);
+            }
         }
     }
 
