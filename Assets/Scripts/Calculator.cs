@@ -36,7 +36,7 @@ public class Calculator
     {
         if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGLONG)
         {
-            LongLongCalculator tempCalc = new LongLongCalculator() { leftValue = longLeftValue, rightValue = longRightValue };
+            LongLongCalculator<long, long> tempCalc = new LongLongCalculator<long, long>() { leftValue = longLeftValue, rightValue = longRightValue };
             tempCalc.Plus();
             
             return tempCalc.result;
@@ -73,7 +73,7 @@ public class Calculator
     {
         if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGLONG)
         {
-            LongLongCalculator tempCalc = new LongLongCalculator() { leftValue = longLeftValue, rightValue = longRightValue };
+            LongLongCalculator<long, long> tempCalc = new LongLongCalculator<long, long>() { leftValue = longLeftValue, rightValue = longRightValue };
             tempCalc.Subtract();
 
             return tempCalc.result;
@@ -107,7 +107,7 @@ public class Calculator
     {
         if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGLONG)
         {
-            LongLongCalculator tempCalc = new LongLongCalculator() { leftValue = longLeftValue, rightValue = longRightValue };
+            LongLongCalculator<long, long> tempCalc = new LongLongCalculator<long, long>() { leftValue = longLeftValue, rightValue = longRightValue };
             tempCalc.Multiply();
 
             return tempCalc.result;
@@ -141,7 +141,7 @@ public class Calculator
     {
         if (CheckOperator(leftValue, rightValue) == OPERATOR.LONGLONG)
         {
-            LongLongCalculator tempCalc = new LongLongCalculator() { leftValue = longLeftValue, rightValue = longRightValue };
+            LongLongCalculator<long, long> tempCalc = new LongLongCalculator<long, long>() { leftValue = longLeftValue, rightValue = longRightValue };
             tempCalc.Division();
 
             return tempCalc.result;
